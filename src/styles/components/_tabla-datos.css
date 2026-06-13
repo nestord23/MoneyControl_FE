@@ -48,6 +48,10 @@
   background: var(--color-row-hover);
 }
 
+.tabla-datos--ingresos .tabla__fila:hover {
+  background: var(--color-income-row-hover);
+}
+
 .tabla__celda {
   font-family: var(--font-geist);
   font-weight: var(--font-weight-regular);
@@ -71,9 +75,30 @@
   text-align: right;
 }
 
+.tabla__celda--monto-ingreso {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  text-shadow: var(--glow-income);
+}
+
 .tabla__celda--monto-prefijo {
   color: var(--color-text-muted);
   margin-right: 2px;
+}
+
+.tabla__celda-fuente {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.tabla__celda-fuente-icono {
+  color: var(--color-text-dim);
+  flex-shrink: 0;
 }
 
 .tabla__etiqueta {
@@ -95,4 +120,14 @@
 .tabla__etiqueta--variable {
   color: var(--color-warning);
   background: var(--color-warning-bg);
+}
+
+.tabla__etiqueta--recurring {
+  color: var(--color-primary);
+  background: rgba(0, 210, 255, 0.1);
+}
+
+.tabla__etiqueta--one-time {
+  color: var(--color-purple);
+  background: var(--color-purple-bg);
 }

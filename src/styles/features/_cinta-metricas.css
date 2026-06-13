@@ -1,0 +1,51 @@
+.cinta-metricas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.metrica-mini {
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.metrica-mini__etiqueta {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-text-dim);
+}
+
+.metrica-mini__valor {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.25rem;
+  color: var(--color-secondary);
+  font-variant-numeric: tabular-nums;
+  text-shadow: var(--glow-income);
+}
+
+.metrica-mini__variacion {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.metrica-mini__variacion--positiva {
+  color: var(--color-secondary);
+}
+
+.metrica-mini__variacion--negativa {
+  color: var(--color-alert);
+}

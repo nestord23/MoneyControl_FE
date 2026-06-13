@@ -1,0 +1,63 @@
+---
+import SelectorColorTerminal from './SelectorColorTerminal.astro';
+---
+
+<div class="editor-overlay" id="editor-overlay">
+  <div class="editor-modal">
+    <div class="editor-modal__encabezado">
+      <span class="editor-modal__titulo">New Category</span>
+      <button class="editor-modal__cerrar" id="editor-cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="editor-modal__cuerpo">
+      <div class="editor-modal__grupo">
+        <label class="editor-modal__etiqueta">Nombre</label>
+        <input class="editor-modal__input" type="text" placeholder="ej. Servicios, Nómina..." />
+      </div>
+      <div class="editor-modal__grupo">
+        <label class="editor-modal__etiqueta">Icono</label>
+        <select class="select--oscuro" style="width: 100%;">
+          <option value="zap">⚡ Servicios</option>
+          <option value="users">👥 Nómina</option>
+          <option value="truck">🚚 Proveedores</option>
+          <option value="tool">🔧 Operativos</option>
+          <option value="trending-up">📈 Inversiones</option>
+          <option value="megaphone">📢 Marketing</option>
+          <option value="dollar-sign">💰 Ventas</option>
+          <option value="shopping">🛒 Compras</option>
+        </select>
+      </div>
+      <div class="editor-modal__grupo">
+        <label class="editor-modal__etiqueta">Color</label>
+        <SelectorColorTerminal />
+      </div>
+      <div class="editor-modal__grupo">
+        <label class="editor-modal__etiqueta">Presupuesto</label>
+        <input class="editor-modal__input editor-modal__input--mono" type="text" placeholder="$0.00" />
+      </div>
+      <button class="editor-modal__accion">SAVE</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const btnAbrir = document.getElementById('btn-nueva-categoria');
+  const overlay = document.getElementById('editor-overlay');
+  const btnCerrar = document.getElementById('editor-cerrar');
+
+  if (btnAbrir && overlay && btnCerrar) {
+    btnAbrir.addEventListener('click', () => {
+      overlay.classList.add('editor-overlay--visible');
+    });
+
+    const cerrar = () => overlay.classList.remove('editor-overlay--visible');
+    btnCerrar.addEventListener('click', cerrar);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) cerrar();
+    });
+  }
+</script>

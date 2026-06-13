@@ -25,10 +25,20 @@
   --color-warning-bg: rgba(255, 184, 0, 0.1);
   --color-fixed-bg: rgba(0, 255, 136, 0.1);
   --color-row-hover: rgba(0, 210, 255, 0.05);
+  --color-purple: #bd93f9;
+  --color-purple-bg: rgba(189, 147, 249, 0.1);
+  --color-income-row-hover: rgba(0, 255, 136, 0.05);
+  --glow-income: 0 0 8px rgba(0, 255, 136, 0.2);
 
   --glow-primary: 0 0 20px rgba(0, 210, 255, 0.3);
   --glow-secondary: 0 0 20px rgba(0, 255, 136, 0.3);
   --glow-alert: 0 0 20px rgba(255, 68, 102, 0.3);
+  --glow-debt: 0 0 20px rgba(255, 68, 102, 0.3);
+  --color-overdue-bg: rgba(255, 68, 102, 0.05);
+  --color-neon-pink: #ff44aa;
+  --color-neon-pink-bg: rgba(255, 68, 170, 0.1);
+  --color-toxic-green: #44ff88;
+  --color-category-hover: rgba(0, 210, 255, 0.05);
   --glow-primary-strong: 0 0 40px rgba(0, 210, 255, 0.15);
 
   --sidebar-width: 240px;

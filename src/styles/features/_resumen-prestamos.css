@@ -1,0 +1,57 @@
+.resumen-prestamos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg) 0;
+}
+
+.resumen-prestamos__etiqueta {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-text-dim);
+}
+
+.resumen-prestamos__deuda {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-extrabold);
+  font-size: 2.5rem;
+  color: var(--color-alert);
+  text-shadow: var(--glow-debt);
+  font-variant-numeric: tabular-nums;
+}
+
+.resumen-prestamos__detalle {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.8125rem;
+  color: var(--color-text-dim);
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.resumen-prestamos__detalle-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.resumen-prestamos__detalle-punto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.resumen-prestamos__detalle-punto--activo {
+  background: var(--color-primary);
+}
+
+.resumen-prestamos__detalle-punto--atrasado {
+  background: var(--color-alert);
+}
+
+.resumen-prestamos__detalle-punto--pagado {
+  background: var(--color-secondary);
+}

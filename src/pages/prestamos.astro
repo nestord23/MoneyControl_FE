@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ResumenPrestamos from '../components/ResumenPrestamos.astro';
+import TablaAmortizacion from '../components/TablaAmortizacion.astro';
+import GraficoAmortizacion from '../components/GraficoAmortizacion.astro';
+import CalculadoraPagos from '../components/CalculadoraPagos.astro';
+import ModalPago from '../components/ModalPago.astro';
+---
+
+<Layout>
+  <div class="pagina-prestamos">
+    <ResumenPrestamos />
+    <div class="pagina-prestamos__contenido">
+      <TablaAmortizacion />
+      <div class="pagina-prestamos__sidebar">
+        <GraficoAmortizacion />
+        <CalculadoraPagos />
+      </div>
+    </div>
+    <ModalPago />
+  </div>
+</Layout>

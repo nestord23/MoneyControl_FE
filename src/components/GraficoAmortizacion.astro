@@ -1,0 +1,19 @@
+<div class="grafico-amortizacion">
+  <div class="grafico-amortizacion__encabezado">
+    <span class="grafico-amortizacion__titulo">Amortization Forecast</span>
+    <span class="grafico-amortizacion__periodo">2026-2031</span>
+  </div>
+  <div class="grafico-amortizacion__lienzo">
+    <svg class="grafico-amortizacion__svg" viewBox="0 0 280 120" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="amort-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255, 68, 102, 0.2)" />
+          <stop offset="100%" stop-color="rgba(255, 68, 102, 0)" />
+        </linearGradient>
+      </defs>
+      <path class="grafico-amortizacion__linea" d="M0,100 Q20,95 40,90 T80,80 T120,65 T160,45 T200,30 T240,18 T280,10" fill="none" stroke="var(--color-alert)" stroke-width="1.5" />
+      <path class="grafico-amortizacion__area" d="M0,100 Q20,95 40,90 T80,80 T120,65 T160,45 T200,30 T240,18 T280,10 L280,120 L0,120 Z" fill="url(#amort-grad)" />
+      <circle cx="280" cy="10" r="2.5" fill="var(--color-alert)" />
+    </svg>
+  </div>
+</div>

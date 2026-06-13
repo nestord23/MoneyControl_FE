@@ -1,0 +1,67 @@
+.grafico-amortizacion {
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.grafico-amortizacion__encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grafico-amortizacion__titulo {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.8125rem;
+  color: var(--color-text);
+}
+
+.grafico-amortizacion__periodo {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.6875rem;
+  color: var(--color-text-dim);
+}
+
+.grafico-amortizacion__lienzo {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+}
+
+.grafico-amortizacion__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.grafico-amortizacion__area {
+  animation: revelar-area 1.5s ease forwards;
+}
+
+@keyframes revelar-area {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.grafico-amortizacion__linea {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: trazar-deuda 2s ease-in-out forwards;
+}
+
+@keyframes trazar-deuda {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

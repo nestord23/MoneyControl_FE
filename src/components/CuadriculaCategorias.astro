@@ -1,0 +1,29 @@
+---
+import TarjetaCategoria from './TarjetaCategoria.astro';
+
+interface Categoria {
+  id: string;
+  name: string;
+  iconKey: string;
+  colorHex: string;
+  transactionCount: number;
+  totalBudget: number;
+}
+
+const categorias: Categoria[] = [
+  { id: '1', name: 'Servicios', iconKey: 'zap', colorHex: '#00d2ff', transactionCount: 24, totalBudget: 3200 },
+  { id: '2', name: 'Nómina', iconKey: 'users', colorHex: '#00ff88', transactionCount: 12, totalBudget: 8400 },
+  { id: '3', name: 'Proveedores', iconKey: 'truck', colorHex: '#ff4466', transactionCount: 18, totalBudget: 5600 },
+  { id: '4', name: 'Operativos', iconKey: 'tool', colorHex: '#ffb800', transactionCount: 31, totalBudget: 2800 },
+  { id: '5', name: 'Inversiones', iconKey: 'trending-up', colorHex: '#bd93f9', transactionCount: 8, totalBudget: 12000 },
+  { id: '6', name: 'Marketing', iconKey: 'megaphone', colorHex: '#ff44aa', transactionCount: 15, totalBudget: 2100 },
+  { id: '7', name: 'Ventas Directas', iconKey: 'dollar-sign', colorHex: '#44ff88', transactionCount: 42, totalBudget: 15000 },
+  { id: '8', name: 'Compras', iconKey: 'shopping', colorHex: '#ff8844', transactionCount: 27, totalBudget: 4500 },
+];
+---
+
+<div class="cuadricula-categorias">
+  {categorias.map((c) => (
+    <TarjetaCategoria {...c} />
+  ))}
+</div>

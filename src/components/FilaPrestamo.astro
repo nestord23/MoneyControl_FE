@@ -1,0 +1,48 @@
+---
+export interface PrestamoAPI {
+  loanName: string;
+  totalAmount: number;
+  remainingBalance: number;
+  interestRate: number;
+  nextDueDate: string;
+  status: 'ACTIVE' | 'PAID' | 'OVERDUE';
+}
+
+const { prestamo, index } = Astro.props as { prestamo: PrestamoAPI; index: number };
+
+function formatearMonto(amount: number): string {
+  return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function formatearFecha(dateStr: string): string {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+const pctPagado = prestamo.status === 'PAID'
+  ? 100
+  : ((1 - prestamo.remainingBalance / prestamo.totalAmount) * 100);
+
+const claseEstado = prestamo.status === 'ACTIVE' ? 'activo'
+  : prestamo.status === 'PAID' ? 'pagado' : 'atrasado';
+
+const textoEstado = prestamo.status === 'ACTIVE' ? 'ACTIVE'
+  : prestamo.status === 'PAID' ? 'PAID' : 'OVERDUE';
+
+const retraso = 0.08 * index;
+---
+
+<div class="fila-prestamo animar-conteo" style="animation-delay: {retraso}s;">
+  <div class="fila-prestamo__info">
+    <span class="fila-prestamo__nombre">{prestamo.loanName}</span>
+    <div class="fila-prestamo__barra">
+      <div class="fila-prestamo__barra-lleno" style="width: {pctPagado}%;"></div>
+    </div>
+  </div>
+  <span class:list={['fila-prestamo__balance', { 'fila-prestamo__balance-pagado': prestamo.status === 'PAID' }]}>
+    {formatearMonto(prestamo.remainingBalance)}
+  </span>
+  <span class="fila-prestamo__tasa">{prestamo.interestRate}%</span>
+  <span class="fila-prestamo__fecha">{formatearFecha(prestamo.nextDueDate)}</span>
+  <span class:list={['tabla__estado', `tabla__estado--${claseEstado}`]}>{textoEstado}</span>
+</div>

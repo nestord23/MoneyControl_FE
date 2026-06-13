@@ -1,0 +1,122 @@
+<div class="modal-pago" id="modal-pago" style="display: none;">
+  <div class="modal-pago__overlay">
+    <div class="modal-pago__contenido">
+      <div class="modal-pago__encabezado">
+        <span class="modal-pago__titulo">Quick Payment</span>
+        <button class="modal-pago__cerrar" id="modal-cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-pago__cuerpo">
+        <div class="modal-pago__grupo">
+          <label class="modal-pago__etiqueta">Seleccionar préstamo</label>
+          <select class="select--oscuro" style="width: 100%;">
+            <option>Hipoteca — Scotia</option>
+            <option>Auto — Honda Civic 2024</option>
+            <option>Personal — Credomatic</option>
+            <option>Negocio — BAC</option>
+          </select>
+        </div>
+        <div class="modal-pago__grupo">
+          <label class="modal-pago__etiqueta">Monto a pagar</label>
+          <input class="modal-pago__input" type="text" value="$1,000.00" />
+        </div>
+        <button class="boton--primario" style="width: 100%; justify-content: center;">
+          Confirmar Pago
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-pago__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(14, 20, 23, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal-pago__contenido {
+    background: #0e1417;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-pago__encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal-pago__titulo {
+    font-family: var(--font-geist);
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  .modal-pago__cerrar {
+    display: flex;
+    padding: 4px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.15s ease;
+  }
+
+  .modal-pago__cerrar:hover {
+    color: var(--color-text);
+  }
+
+  .modal-pago__cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .modal-pago__grupo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .modal-pago__etiqueta {
+    font-family: var(--font-geist);
+    font-weight: var(--font-weight-medium);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-label);
+    color: var(--color-text-dim);
+  }
+
+  .modal-pago__input {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-geist-mono);
+    font-weight: var(--font-weight-medium);
+    font-size: 1rem;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+    outline: none;
+  }
+
+  .modal-pago__input:focus {
+    border-color: var(--color-primary);
+  }
+</style>
