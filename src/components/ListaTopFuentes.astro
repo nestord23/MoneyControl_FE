@@ -16,8 +16,8 @@ const maxMonto = Math.max(...fuentes.map((f) => f.monto));
 
 <div class="lista-fuentes">
   <span class="lista-fuentes__titulo">Top Sources</span>
-  {fuentes.map((f) => (
-    <div class="lista-fuentes__item">
+  {fuentes.map((f, i) => (
+    <div class="lista-fuentes__item" data-index={i}>
       <div class="lista-fuentes__item-info">
         <div class="lista-fuentes__item-icono">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -28,8 +28,12 @@ const maxMonto = Math.max(...fuentes.map((f) => f.monto));
       </div>
       <span class="lista-fuentes__item-monto">${f.monto.toLocaleString('en-US')}</span>
       <div class="lista-fuentes__barra">
-        <div class="lista-fuentes__barra-lleno" style="width: {(f.monto / maxMonto) * 100}%;"></div>
+        <div class="lista-fuentes__barra-lleno"></div>
       </div>
     </div>
   ))}
 </div>
+
+<style is:global>
+  {fuentes.map((f, i) => `.lista-fuentes__item[data-index="${i}"] .lista-fuentes__barra-lleno { width: ${(f.monto / maxMonto) * 100}%; }`).join('\n')}
+</style>

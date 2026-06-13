@@ -147,3 +147,12 @@
   border-color: var(--color-text);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
 }
+
+.selector-color__item[data-color="#00d2ff"] { background-color: #00d2ff; }
+.selector-color__item[data-color="#00ff88"] { background-color: #00ff88; }
+.selector-color__item[data-color="#ff4466"] { background-color: #ff4466; }
+.selector-color__item[data-color="#ff44aa"] { background-color: #ff44aa; }
+.selector-color__item[data-color="#44ff88"] { background-color: #44ff88; }
+.selector-color__item[data-color="#bd93f9"] { background-color: #bd93f9; }
+.selector-color__item[data-color="#ffb800"] { background-color: #ffb800; }
+.selector-color__item[data-color="#ff8844"] { background-color: #ff8844; }

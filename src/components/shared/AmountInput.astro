@@ -1,0 +1,41 @@
+---
+export interface Props {
+  variant: string;
+  label?: string;
+  placeholder?: string;
+}
+
+const { variant, label, placeholder } = Astro.props;
+---
+
+<div class:list={['amount-input', `amount-input--${variant}`]}>
+  {label && <span class="amount-input__label">{label}</span>}
+  <input class="amount-input__field" type="text" inputmode="decimal" placeholder={placeholder || "Q0.00"} />
+</div>
+
+<script>
+  const FMT_SELECTOR = '.amount-input__field';
+
+  function accountingFormat(value) {
+    const num = parseFloat(value.replace(/[^0-9.-]/g, ''));
+    if (isNaN(num)) return '';
+    const neg = num < 0;
+    const formatted = Math.abs(num).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return neg ? `(Q${formatted})` : `Q${formatted}`;
+  }
+
+  function rawValue(value) {
+    return value.replace(/[Q()\s]/g, '');
+  }
+
+  document.querySelectorAll(FMT_SELECTOR).forEach(el => {
+    el.addEventListener('blur', () => {
+      if (!el.value) return;
+      el.dataset.raw = el.value.replace(/[^0-9.-]/g, '');
+      el.value = accountingFormat(el.value);
+    });
+    el.addEventListener('focus', () => {
+      el.value = el.dataset.raw || rawValue(el.value);
+    });
+  });
+</script>

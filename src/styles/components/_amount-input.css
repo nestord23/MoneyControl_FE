@@ -1,0 +1,47 @@
+.amount-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  align-items: center;
+  padding: var(--space-md) 0;
+}
+
+.amount-input__field {
+  background: transparent;
+  border: none;
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: 2.5rem;
+  color: var(--accent, var(--color-text));
+  text-shadow: 0 0 20px color-mix(in srgb, var(--accent, transparent) 30%, transparent);
+  text-align: center;
+  width: 100%;
+  outline: none;
+  font-variant-numeric: tabular-nums;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: border-color 0.15s ease;
+}
+
+.amount-input__field:focus {
+  border-color: var(--accent, var(--color-primary));
+}
+
+.amount-input__field::placeholder {
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-regular);
+  font-size: 1.5rem;
+}
+
+.amount-input__label {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-text-dim);
+}
+
+.amount-input--ingreso { --accent: #00ff88; }
+.amount-input--gasto { --accent: #00d2ff; }
+.amount-input--deuda { --accent: #ff4466; }

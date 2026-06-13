@@ -1,0 +1,37 @@
+.terminal-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.terminal-toggle__option {
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-text-dim);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  background: none;
+  border: none;
+}
+
+.terminal-toggle__option:hover {
+  color: var(--color-text);
+}
+
+.terminal-toggle__option--active {
+  background: color-mix(in srgb, var(--accent, var(--color-primary)) 15%, transparent);
+  color: var(--accent, var(--color-primary));
+}
+
+.terminal-toggle--ingreso { --accent: #00ff88; }
+.terminal-toggle--gasto { --accent: #00d2ff; }
+.terminal-toggle--deuda { --accent: #ff4466; }

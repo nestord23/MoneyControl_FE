@@ -17,7 +17,7 @@ const seleccionado = '#00d2ff';
   {colores.map((c) => (
     <button
       class:list={['selector-color__item', { 'selector-color__item--seleccionado': c.hex === seleccionado }]}
-      style="background-color: {c.hex};"
+      data-color={c.hex}
       title={c.name}
     ></button>
   ))}

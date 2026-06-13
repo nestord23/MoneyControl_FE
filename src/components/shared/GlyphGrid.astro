@@ -1,0 +1,65 @@
+---
+interface Glyph {
+  key: string;
+  path: string;
+}
+
+const glyphs: Glyph[] = [
+  { key: 'zap', path: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z' },
+  { key: 'users', path: 'M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' },
+  { key: 'truck', path: 'M1 3h15v13H1zM16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z' },
+  { key: 'tool', path: 'M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z' },
+  { key: 'trending-up', path: 'M23 6l-9.5 9.5-5-5L1 18' },
+  { key: 'megaphone', path: 'M3 11l3-9h12l3 9M3 11l2 10h4l-1-5M3 11h18M11 21h4' },
+  { key: 'dollar-sign', path: 'M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6' },
+  { key: 'shopping', path: 'M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0' },
+];
+
+const seleccionado = 'zap';
+---
+
+<div class="glyph-grid">
+  {glyphs.map((g) => (
+    <button
+      class:list={['glyph-grid__item', { 'glyph-grid__item--seleccionado': g.key === seleccionado }]}
+      data-key={g.key}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d={g.path} />
+      </svg>
+    </button>
+  ))}
+</div>
+
+<style>
+  .glyph-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xs);
+  }
+
+  .glyph-grid__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-dim);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .glyph-grid__item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-text);
+  }
+
+  .glyph-grid__item--seleccionado {
+    border-color: var(--color-primary);
+    background: rgba(0, 210, 255, 0.08);
+    color: var(--color-primary);
+  }
+</style>

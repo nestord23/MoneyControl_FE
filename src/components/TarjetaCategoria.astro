@@ -3,12 +3,12 @@ export interface Props {
   id: string;
   name: string;
   iconKey: string;
-  colorHex: string;
+  variant: string;
   transactionCount: number;
   totalBudget: number;
 }
 
-const { id, name, iconKey, colorHex, transactionCount, totalBudget } = Astro.props;
+const { id, name, iconKey, variant, transactionCount, totalBudget } = Astro.props;
 
 function formatearMonto(amount: number): string {
   return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -30,9 +30,8 @@ function iconoPath(iconKey: string): string {
 ---
 
 <article
-  class="tarjeta-categoria"
+  class:list={['tarjeta-categoria', `tarjeta-categoria--color-${variant}`]}
   data-name={name}
-  style="--color-accent: {colorHex};"
 >
   <div class="tarjeta-categoria__encabezado">
     <div class="tarjeta-categoria__icono">
@@ -40,18 +39,18 @@ function iconoPath(iconKey: string): string {
         <path d={iconoPath(iconKey)} />
       </svg>
     </div>
-    <div class="tarjeta-categoria__led" style="background: {colorHex};"></div>
+    <div class="tarjeta-categoria__led"></div>
   </div>
 
   <span class="tarjeta-categoria__nombre">{name}</span>
 
   <div class="tarjeta-categoria__mini-barras">
-    <div class="tarjeta-categoria__mini-barra tarjeta-categoria__mini-barra--alta" style="height: 100%; background: {colorHex};"></div>
-    <div class="tarjeta-categoria__mini-barra tarjeta-categoria__mini-barra--alta" style="height: 70%; background: {colorHex};"></div>
-    <div class="tarjeta-categoria__mini-barra" style="height: 45%; background: {colorHex};"></div>
-    <div class="tarjeta-categoria__mini-barra tarjeta-categoria__mini-barra--alta" style="height: 85%; background: {colorHex};"></div>
-    <div class="tarjeta-categoria__mini-barra" style="height: 30%; background: {colorHex};"></div>
-    <div class="tarjeta-categoria__mini-barra tarjeta-categoria__mini-barra--alta" style="height: 60%; background: {colorHex};"></div>
+    <div class="tarjeta-categoria__mini-barra tarjeta-categoria__mini-barra--alta"></div>
+    <div class="tarjeta-categoria__mini-barra tarjeta-categoria__mini-barra--alta"></div>
+    <div class="tarjeta-categoria__mini-barra"></div>
+    <div class="tarjeta-categoria__mini-barra tarjeta-categoria__mini-barra--alta"></div>
+    <div class="tarjeta-categoria__mini-barra"></div>
+    <div class="tarjeta-categoria__mini-barra tarjeta-categoria__mini-barra--alta"></div>
   </div>
 
   <div class="tarjeta-categoria__stats">

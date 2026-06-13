@@ -1,14 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CabeceraPrestamos from '../components/CabeceraPrestamos.astro';
 import ResumenPrestamos from '../components/ResumenPrestamos.astro';
 import TablaAmortizacion from '../components/TablaAmortizacion.astro';
 import GraficoAmortizacion from '../components/GraficoAmortizacion.astro';
 import CalculadoraPagos from '../components/CalculadoraPagos.astro';
-import ModalPago from '../components/ModalPago.astro';
+import ModalDeuda from '../components/ModalDeuda.astro';
 ---
 
 <Layout>
   <div class="pagina-prestamos">
+    <CabeceraPrestamos />
     <ResumenPrestamos />
     <div class="pagina-prestamos__contenido">
       <TablaAmortizacion />
@@ -17,6 +19,6 @@ import ModalPago from '../components/ModalPago.astro';
         <CalculadoraPagos />
       </div>
     </div>
-    <ModalPago />
+    <ModalDeuda />
   </div>
 </Layout>

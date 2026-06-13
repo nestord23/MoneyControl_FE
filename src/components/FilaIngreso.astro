@@ -8,7 +8,7 @@ export interface IngresoAPI {
   amount: number;
 }
 
-const { ingreso, index } = Astro.props as { ingreso: IngresoAPI; index: number };
+const { ingreso } = Astro.props as { ingreso: IngresoAPI };
 
 function formatearFecha(dateStr: string): string {
   const d = new Date(dateStr);
@@ -31,10 +31,9 @@ function iconoFuente(source: string): string {
 const claseFrecuencia = ingreso.frequency === 'Recurring' ? 'recurring' : 'one-time';
 const textoEstado = ingreso.status === 'Received' ? 'RECEIVED' : 'PENDING';
 const claseEstado = ingreso.status === 'Received' ? 'recibido' : 'pendiente';
-const retraso = 0.05 * index;
 ---
 
-<div class="tabla__fila" style="animation-delay: {retraso}s;">
+<div class="tabla__fila">
   <span class="tabla__celda tabla__celda--fecha">{formatearFecha(ingreso.date)}</span>
   <div class="tabla__celda-fuente">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="tabla__celda-fuente-icono">
@@ -49,9 +48,3 @@ const retraso = 0.05 * index;
     {formatearMonto(ingreso.amount).slice(1)}
   </span>
 </div>
-
-<style>
-  .tabla__fila {
-    animation: fila-aparecer 0.4s ease backwards;
-  }
-</style>

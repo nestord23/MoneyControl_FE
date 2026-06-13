@@ -29,3 +29,7 @@
 @import './components/_tarjeta-categoria.css';
 @import './features/_editor-categorias.css';
 @import './pages/_categorias.css';
+@import './components/_modal.css';
+@import './components/_amount-input.css';
+@import './components/_terminal-toggle.css';
+@import './components/_action-group.css';

@@ -167,3 +167,19 @@
 .tarjeta-categoria__accion--editar:hover {
   color: var(--color-primary);
 }
+
+.tarjeta-categoria--color-00d2ff { --color-accent: #00d2ff; }
+.tarjeta-categoria--color-00ff88 { --color-accent: #00ff88; }
+.tarjeta-categoria--color-ff4466 { --color-accent: #ff4466; }
+.tarjeta-categoria--color-ffb800 { --color-accent: #ffb800; }
+.tarjeta-categoria--color-bd93f9 { --color-accent: #bd93f9; }
+.tarjeta-categoria--color-ff44aa { --color-accent: #ff44aa; }
+.tarjeta-categoria--color-44ff88 { --color-accent: #44ff88; }
+.tarjeta-categoria--color-ff8844 { --color-accent: #ff8844; }
+
+.tarjeta-categoria__mini-barra:nth-child(1) { height: 100%; }
+.tarjeta-categoria__mini-barra:nth-child(2) { height: 70%; }
+.tarjeta-categoria__mini-barra:nth-child(3) { height: 45%; }
+.tarjeta-categoria__mini-barra:nth-child(4) { height: 85%; }
+.tarjeta-categoria__mini-barra:nth-child(5) { height: 30%; }
+.tarjeta-categoria__mini-barra:nth-child(6) { height: 60%; }

@@ -15,3 +15,13 @@ const prestamos: PrestamoAPI[] = [
 <div class="tabla-amortizacion__cuerpo">
   {prestamos.map((p, i) => <FilaPrestamo prestamo={p} index={i} />)}
 </div>
+
+<style is:global>
+  {prestamos.map((p, i) => {
+    const pct = p.status === 'PAID' ? 100 : (1 - p.remainingBalance / p.totalAmount) * 100;
+    return `
+      .tabla-amortizacion__cuerpo > .fila-prestamo:nth-child(${i + 1}) { animation-delay: ${0.08 * i}s; }
+      .tabla-amortizacion__cuerpo > .fila-prestamo:nth-child(${i + 1}) .fila-prestamo__barra-lleno { width: ${pct}%; }
+    `;
+  }).join('\n')}
+</style>

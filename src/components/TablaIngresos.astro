@@ -27,7 +27,7 @@ const ingresos: IngresoAPI[] = [
   </div>
 </div>
 
-<style>
+<style is:global>
   @keyframes fila-aparecer {
     from {
       opacity: 0;
@@ -38,4 +38,5 @@ const ingresos: IngresoAPI[] = [
       transform: translateY(0);
     }
   }
+  {ingresos.map((_, i) => `.tabla-datos__cuerpo > .tabla__fila:nth-child(${i + 1}) { animation-delay: ${0.05 * i}s; }`).join('\n')}
 </style>

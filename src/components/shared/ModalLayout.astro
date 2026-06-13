@@ -1,0 +1,51 @@
+---
+export interface Props {
+  id: string;
+  titulo: string;
+  idTecnico: string;
+  variant: string;
+  openBtnId: string;
+  closeBtnId?: string;
+}
+
+const { id, titulo, idTecnico, variant, openBtnId, closeBtnId } = Astro.props;
+const closeId = closeBtnId || `${id}-cerrar`;
+---
+
+<div class="modal-overlay" id={id}>
+  <div class:list={['modal-container', `modal-container--${variant}`]}>
+    <div class="modal-header">
+      <div class="modal-header__info">
+        <span class="modal-header__title">{titulo}</span>
+        <span class="modal-header__tech">{idTecnico}</span>
+      </div>
+      <button class="modal-header__close" id={closeId}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ id, openBtnId, closeId }}>
+  const overlay = document.getElementById(id);
+  const btnAbrir = document.getElementById(openBtnId);
+  const btnCerrar = document.getElementById(closeId);
+
+  if (overlay && btnAbrir && btnCerrar) {
+    btnAbrir.addEventListener('click', () => {
+      overlay.classList.add('modal-overlay--visible');
+    });
+
+    const cerrar = () => overlay.classList.remove('modal-overlay--visible');
+    btnCerrar.addEventListener('click', cerrar);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) cerrar();
+    });
+  }
+</script>

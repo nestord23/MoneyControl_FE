@@ -1,0 +1,19 @@
+---
+export interface Props {
+  opciones: string[];
+  variant: string;
+  activo?: number;
+}
+
+const { opciones, variant, activo = 0 } = Astro.props;
+---
+
+<div class:list={['terminal-toggle', `terminal-toggle--${variant}`]}>
+  {opciones.map((opt, i) => (
+    <button
+      class:list={['terminal-toggle__option', { 'terminal-toggle__option--active': i === activo }]}
+    >
+      {opt}
+    </button>
+  ))}
+</div>
