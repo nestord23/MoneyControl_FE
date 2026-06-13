@@ -1,0 +1,41 @@
+.aplicacion {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--topbar-height) 1fr;
+  grid-template-areas:
+    "barra-lateral barra-superior"
+    "barra-lateral contenido";
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.barra-lateral {
+  grid-area: barra-lateral;
+  position: relative;
+  z-index: 10;
+}
+
+.barra-superior {
+  grid-area: barra-superior;
+  position: relative;
+  z-index: 5;
+}
+
+.contenido-principal {
+  grid-area: contenido;
+  overflow-y: auto;
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.panel-principal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.panel-principal__paneles {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--space-lg);
+}

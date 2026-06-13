@@ -1,0 +1,44 @@
+:root {
+  --font-geist: 'Geist', 'Inter', system-ui, sans-serif;
+  --font-geist-mono: 'Geist Mono', 'Inter', monospace;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --tracking-header: -0.02em;
+  --tracking-data: 0em;
+  --tracking-label: 0.05em;
+
+  --color-bg: #0e1417;
+  --color-primary: #00d2ff;
+  --color-secondary: #00ff88;
+  --color-alert: #ff4466;
+  --color-surface: rgba(14, 20, 23, 0.6);
+  --color-border: rgba(255, 255, 255, 0.05);
+  --color-text: rgba(255, 255, 255, 0.85);
+  --color-text-dim: rgba(255, 255, 255, 0.5);
+  --color-text-muted: rgba(255, 255, 255, 0.25);
+
+  --glow-primary: 0 0 20px rgba(0, 210, 255, 0.3);
+  --glow-secondary: 0 0 20px rgba(0, 255, 136, 0.3);
+  --glow-alert: 0 0 20px rgba(255, 68, 102, 0.3);
+  --glow-primary-strong: 0 0 40px rgba(0, 210, 255, 0.15);
+
+  --sidebar-width: 240px;
+  --topbar-height: 64px;
+  --backdrop-blur: 12px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+}

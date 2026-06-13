@@ -1,0 +1,79 @@
+.registro-actividad {
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.registro-actividad__encabezado {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+  letter-spacing: var(--tracking-header);
+  color: var(--color-text);
+}
+
+.registro-actividad__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.registro-actividad__item {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.registro-actividad__item:last-child {
+  border-bottom: none;
+}
+
+.registro-actividad__icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text-dim);
+}
+
+.registro-actividad__descripcion {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.8125rem;
+  color: var(--color-text);
+}
+
+.registro-actividad__fecha {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+}
+
+.registro-actividad__monto {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.registro-actividad__monto--ingreso {
+  color: var(--color-secondary);
+}
+
+.registro-actividad__monto--gasto {
+  color: var(--color-alert);
+}

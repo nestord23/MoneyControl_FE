@@ -1,11 +1,18 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import MetricasHero from '../components/MetricasHero.astro';
+import CuadriculaStats from '../components/CuadriculaStats.astro';
+import GraficoPrincipal from '../components/GraficoPrincipal.astro';
+import RegistroActividad from '../components/RegistroActividad.astro';
 ---
 
 <Layout>
-	<Welcome />
+  <div class="panel-principal">
+    <MetricasHero />
+    <CuadriculaStats />
+    <div class="panel-principal__paneles">
+      <GraficoPrincipal />
+      <RegistroActividad />
+    </div>
+  </div>
 </Layout>

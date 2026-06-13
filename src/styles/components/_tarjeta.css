@@ -1,0 +1,71 @@
+.tarjeta {
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta:hover {
+  transform: scale(1.02);
+}
+
+.tarjeta--destacado:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--glow-primary-strong);
+}
+
+.tarjeta__encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.tarjeta__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.tarjeta__valor {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.5rem;
+  letter-spacing: var(--tracking-data);
+  font-variant-numeric: tabular-nums;
+}
+
+.tarjeta__valor--primary {
+  color: var(--color-primary);
+}
+
+.tarjeta__valor--secondary {
+  color: var(--color-secondary);
+}
+
+.tarjeta__valor--alert {
+  color: var(--color-alert);
+}
+
+.tarjeta__icono {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.tarjeta__etiqueta {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-medium);
+  font-size: 0.75rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+.cuadricula-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}

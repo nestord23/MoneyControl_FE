@@ -1,0 +1,27 @@
+---
+const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+---
+
+<section class="grafico-principal">
+  <div class="grafico-principal__encabezado">
+    <h2 class="grafico-principal__titulo">Cash Flow Analysis</h2>
+    <span class="grafico-principal__periodo">2026</span>
+  </div>
+  <div class="grafico-principal__lienzo">
+    <canvas id="grafico-cashflow"></canvas>
+  </div>
+</section>
+
+<script>
+  import { crearGrafico } from '../lib/crearGrafico';
+
+  const data = {
+    labels: {meses},
+    ingresos: [28500, 31200, 29800, 33400, 35200, 38100, 36500, 39200, 41800, 40500, 43200, 48250],
+    gastos: [22100, 19800, 23400, 24500, 21200, 25600, 27800, 24100, 26800, 29100, 27500, 32180],
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    crearGrafico('grafico-cashflow', data);
+  });
+</script>

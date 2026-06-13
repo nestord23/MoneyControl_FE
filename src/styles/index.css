@@ -1,0 +1,10 @@
+@import './base/_variables.css';
+@import './base/_reset.css';
+@import './base/_typography.css';
+@import './layouts/_principal.css';
+@import './layouts/_sidebar.css';
+@import './layouts/_topbar.css';
+@import './components/_tarjeta.css';
+@import './components/_actividad.css';
+@import './components/_grafico.css';
+@import './utilities/_helpers.css';
