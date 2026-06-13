@@ -1,0 +1,17 @@
+export default function CabeceraPrestamos() {
+  return (
+    <header class="cabecera-gastos">
+      <div>
+        <h1 class="cabecera-gastos__titulo">Loans & Credit</h1>
+        <p class="cabecera-gastos__subtitulo">Gestión de préstamos y pasivos — Sistema de control de deuda</p>
+      </div>
+      <button class="boton--primario boton--alerta" id="btn-agregar-deuda">
+        <svg class="boton--primario__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0110 0v4" />
+        </svg>
+        Agregar Deuda
+      </button>
+    </header>
+  );
+}

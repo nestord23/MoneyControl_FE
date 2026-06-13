@@ -1,0 +1,35 @@
+.buscador-categorias {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  width: 260px;
+  transition: border-color 0.15s ease;
+}
+
+.buscador-categorias:focus-within {
+  border-color: var(--color-primary);
+}
+
+.buscador-categorias__icono {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.buscador-categorias__input {
+  background: transparent;
+  border: none;
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.8125rem;
+  color: var(--color-text);
+  width: 100%;
+  outline: none;
+}
+
+.buscador-categorias__input::placeholder {
+  color: var(--color-text-muted);
+}

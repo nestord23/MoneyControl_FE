@@ -1,0 +1,40 @@
+export interface GastoAPI {
+  date: string;
+  description: string;
+  categoryName: string;
+  type: 0 | 1;
+  amount: number;
+}
+
+function formatearFecha(dateStr: string): string {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function formatearMonto(amount: number): string {
+  return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+interface Props {
+  gasto: GastoAPI;
+}
+
+export default function FilaGasto({ gasto }: Props) {
+  const tipoEtiqueta = gasto.type === 0 ? 'FIXED' : 'VARIABLE';
+  const claseTipo = gasto.type === 0 ? 'fija' : 'variable';
+
+  return (
+    <div class="tabla__fila">
+      <span class="tabla__celda tabla__celda--fecha">{formatearFecha(gasto.date)}</span>
+      <div>
+        <span class="tabla__celda">{gasto.description}</span>
+      </div>
+      <span class="tabla__celda">{gasto.categoryName}</span>
+      <span class={`tabla__etiqueta tabla__etiqueta--${claseTipo}`}>{tipoEtiqueta}</span>
+      <span class="tabla__celda tabla__celda--monto">
+        <span class="tabla__celda--monto-prefijo">$</span>
+        {formatearMonto(gasto.amount).slice(1)}
+      </span>
+    </div>
+  );
+}

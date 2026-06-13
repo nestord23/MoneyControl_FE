@@ -35,6 +35,10 @@
   opacity: 1;
 }
 
+.tarjeta-categoria--oculta {
+  display: none;
+}
+
 .tarjeta-categoria--nueva {
   animation: escaneo 0.8s ease-in-out;
 }

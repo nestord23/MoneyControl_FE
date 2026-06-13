@@ -35,3 +35,75 @@
   width: 100%;
   height: 240px;
 }
+
+.grafico-pulso {
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.grafico-pulso__encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grafico-pulso__titulo {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.8125rem;
+  color: var(--color-text);
+}
+
+.grafico-pulso__vivo {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.625rem;
+  color: var(--color-secondary);
+  animation: parpadeo 1s ease-in-out infinite;
+}
+
+.grafico-pulso__lienzo {
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+}
+
+.grafico-pulso__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.grafico-pulso__linea {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: trazar-linea 2s ease-in-out forwards;
+}
+
+.grafico-pulso__relleno {
+  opacity: 0.8;
+}
+
+.grafico-pulso__pulso {
+  animation: latido 2s ease-in-out infinite;
+}
+
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes trazar-linea {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes latido {
+  0%, 100% { opacity: 0.6; transform-origin: center; transform: scale(1); }
+  50% { opacity: 0; transform: scale(2.5); }
+}

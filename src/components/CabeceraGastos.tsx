@@ -1,0 +1,16 @@
+export default function CabeceraGastos() {
+  return (
+    <header class="cabecera-gastos">
+      <div>
+        <h1 class="cabecera-gastos__titulo">Expense Registry</h1>
+        <p class="cabecera-gastos__subtitulo">Registro centralizado de gastos — Sistema de control financiero</p>
+      </div>
+      <button class="boton--primario" id="btn-agregar-gasto">
+        <svg class="boton--primario__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+        Agregar Gasto
+      </button>
+    </header>
+  );
+}
