@@ -5,7 +5,7 @@ import CintaMetricas from '../components/CintaMetricas.astro';
 import TablaIngresos from '../components/TablaIngresos.astro';
 import PanelCrecimiento from '../components/PanelCrecimiento.astro';
 import PaginacionTerminal from '../components/PaginacionTerminal.astro';
-import ModalIngreso from '../components/ModalIngreso.astro';
+import ModalIngreso from '../components/ModalIngreso';
 ---
 
 <Layout>
@@ -19,6 +19,6 @@ import ModalIngreso from '../components/ModalIngreso.astro';
       </div>
       <PanelCrecimiento />
     </div>
-    <ModalIngreso />
+    <ModalIngreso client:load />
   </div>
 </Layout>

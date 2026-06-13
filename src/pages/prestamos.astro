@@ -5,7 +5,7 @@ import ResumenPrestamos from '../components/ResumenPrestamos.astro';
 import TablaAmortizacion from '../components/TablaAmortizacion.astro';
 import GraficoAmortizacion from '../components/GraficoAmortizacion.astro';
 import CalculadoraPagos from '../components/CalculadoraPagos.astro';
-import ModalDeuda from '../components/ModalDeuda.astro';
+import ModalDeuda from '../components/ModalDeuda';
 ---
 
 <Layout>
@@ -19,6 +19,6 @@ import ModalDeuda from '../components/ModalDeuda.astro';
         <CalculadoraPagos />
       </div>
     </div>
-    <ModalDeuda />
+    <ModalDeuda client:load />
   </div>
 </Layout>

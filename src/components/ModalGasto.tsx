@@ -1,0 +1,43 @@
+import ModalLayout from './shared/ModalLayout';
+import AmountInput from './shared/AmountInput';
+import TerminalToggle from './shared/TerminalToggle';
+import ActionGroup from './shared/ActionGroup';
+
+export default function ModalGasto() {
+  return (
+    <ModalLayout
+      id="modal-gasto"
+      titulo="REGISTER EXPENSE"
+      idTecnico="SYSTEM_INPUT: EXPENSE_LOG"
+      variant="gasto"
+      openBtnId="btn-agregar-gasto"
+    >
+      <AmountInput variant="gasto" label="Amount (GTQ)" placeholder="Q0.00" />
+
+      <div class="modal-body__group">
+        <label class="modal-body__label">Sector</label>
+        <select class="modal-body__select">
+          <option value="">Seleccionar sector...</option>
+          <option value="servicios">Servicios</option>
+          <option value="nomina">Nómina</option>
+          <option value="proveedores">Proveedores</option>
+          <option value="operativos">Operativos</option>
+          <option value="marketing">Marketing</option>
+          <option value="otros">Otros</option>
+        </select>
+      </div>
+
+      <div class="modal-body__group">
+        <label class="modal-body__label">Temporal Marker</label>
+        <input class="modal-body__input" type="date" />
+      </div>
+
+      <div class="modal-body__group">
+        <label class="modal-body__label">Recurrence Status</label>
+        <TerminalToggle opciones={["FIXED", "VARIABLE"]} variant="gasto" />
+      </div>
+
+      <ActionGroup variant="gasto" ctaText="+ REGISTER ENTRY" ctaIcono="zap" />
+    </ModalLayout>
+  );
+}
