@@ -1,0 +1,48 @@
+.cabecera-gastos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.cabecera-gastos__titulo {
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.5rem;
+  letter-spacing: var(--tracking-header);
+  color: var(--color-text);
+}
+
+.cabecera-gastos__subtitulo {
+  font-family: var(--font-geist-mono);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+  margin-top: var(--space-xs);
+}
+
+.boton--primario {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--color-primary);
+  color: #0e1417;
+  font-family: var(--font-geist);
+  font-weight: var(--font-weight-bold);
+  font-size: 0.8125rem;
+  border-radius: var(--radius-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.boton--primario:hover {
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+  transform: scale(1.02);
+}
+
+.boton--primario__icono {
+  width: 16px;
+  height: 16px;
+}

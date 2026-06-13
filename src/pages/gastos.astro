@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CabeceraGastos from '../components/CabeceraGastos.astro';
+import BarraFiltros from '../components/BarraFiltros.astro';
+import TablaGastos from '../components/TablaGastos.astro';
+import PanelResumen from '../components/PanelResumen.astro';
+import Paginacion from '../components/Paginacion.astro';
+---
+
+<Layout>
+  <div class="pagina-gastos">
+    <CabeceraGastos />
+    <BarraFiltros />
+    <div class="pagina-gastos__contenido">
+      <div>
+        <TablaGastos />
+        <Paginacion />
+      </div>
+      <PanelResumen />
+    </div>
+  </div>
+</Layout>

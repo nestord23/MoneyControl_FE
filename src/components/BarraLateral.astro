@@ -1,10 +1,12 @@
 ---
+const rutaActual = Astro.url.pathname;
+
 const enlaces = [
-  { icono: 'dashboard', label: 'Panel General', activo: true, href: '/' },
-  { icono: 'receipt', label: 'Gastos', activo: false, href: '/gastos' },
-  { icono: 'chart-bar', label: 'Reportes', activo: false, href: '/reportes' },
-  { icono: 'wallet', label: 'Cartera', activo: false, href: '/cartera' },
-  { icono: 'settings', label: 'Ajustes', activo: false, href: '/ajustes' },
+  { icono: 'dashboard', label: 'Panel General', href: '/' },
+  { icono: 'receipt', label: 'Gastos', href: '/gastos' },
+  { icono: 'chart-bar', label: 'Reportes', href: '/reportes' },
+  { icono: 'wallet', label: 'Cartera', href: '/cartera' },
+  { icono: 'settings', label: 'Ajustes', href: '/ajustes' },
 ];
 ---
 
@@ -21,7 +23,7 @@ const enlaces = [
     {enlaces.map((enlace) => (
       <a
         href={enlace.href}
-        class:list={['barra-lateral__enlace', { 'barra-lateral__enlace--activo': enlace.activo }]}
+        class:list={['barra-lateral__enlace', { 'barra-lateral__enlace--activo': rutaActual === enlace.href }]}
       >
         <svg class="barra-lateral__enlace-icono" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           {enlace.icono === 'dashboard' && (
@@ -32,12 +34,12 @@ const enlaces = [
               <rect x="14" y="14" width="7" height="7" />
             </>
           )}
-          {enlace.icono === 'transfer' && (
+          {enlace.icono === 'receipt' && (
             <>
-              <polyline points="17 1 21 5 17 9" />
-              <path d="M3 11V9a4 4 0 0 1 4-4h14" />
-              <polyline points="7 23 3 19 7 15" />
-              <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+              <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z" />
+              <path d="M8 7h8" />
+              <path d="M8 11h6" />
+              <path d="M8 15h4" />
             </>
           )}
           {enlace.icono === 'chart-bar' && (

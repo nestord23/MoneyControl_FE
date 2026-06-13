@@ -1,0 +1,12 @@
+.pagina-gastos {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pagina-gastos__contenido {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}

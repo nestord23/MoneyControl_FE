@@ -8,3 +8,9 @@
 @import './components/_actividad.css';
 @import './components/_grafico.css';
 @import './utilities/_helpers.css';
+@import './features/_cabecera-gastos.css';
+@import './features/_barra-filtros.css';
+@import './components/_tabla-datos.css';
+@import './features/_panel-resumen.css';
+@import './components/_paginacion.css';
+@import './pages/_gastos.css';
