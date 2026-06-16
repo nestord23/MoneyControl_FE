@@ -68,11 +68,11 @@ export function crearGrafico(
           backgroundColor: 'rgba(14, 20, 23, 0.9)',
           titleFont: {
             family: 'Geist',
-            weight: '500',
+            weight: 500,
           },
           bodyFont: {
             family: 'Geist Mono',
-            weight: '400',
+            weight: 400,
           },
           borderColor: 'rgba(255, 255, 255, 0.05)',
           borderWidth: 1,
@@ -93,7 +93,7 @@ export function crearGrafico(
           ticks: {
             font: {
               family: 'Geist',
-              weight: '400',
+              weight: 400,
               size: 11,
             },
             color: 'rgba(255,255,255,0.25)',
@@ -104,21 +104,21 @@ export function crearGrafico(
           display: true,
           grid: {
             color: 'rgba(255,255,255,0.03)',
-            drawBorder: false,
           },
           ticks: {
             font: {
               family: 'Geist Mono',
-              weight: '400',
+              weight: 400,
               size: 11,
             },
             color: 'rgba(255,255,255,0.25)',
             padding: 8,
-            callback: (value: number) => {
-              if (value >= 1000) {
-                return '$' + (value / 1000).toFixed(0) + 'k';
+            callback: (value: string | number) => {
+              const num = typeof value === 'number' ? value : Number(value);
+              if (num >= 1000) {
+                return '$' + (num / 1000).toFixed(0) + 'k';
               }
-              return '$' + value;
+              return '$' + num;
             },
           },
           beginAtZero: true,

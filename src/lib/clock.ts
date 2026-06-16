@@ -3,6 +3,7 @@ export function initClock(elementId: string): () => void {
   if (!el) return () => {};
 
   function tick() {
+    if (!el) return;
     const ahora = new Date();
     const horas = String(ahora.getHours()).padStart(2, '0');
     const minutos = String(ahora.getMinutes()).padStart(2, '0');
