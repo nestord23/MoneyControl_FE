@@ -36,3 +36,4 @@ export const loansService = {
   delete: (id: number) =>
     api.del(`/api/Loans/${id}`),
 };
+//hola esto es una prueba
