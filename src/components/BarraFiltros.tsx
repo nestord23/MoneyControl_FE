@@ -1,20 +1,23 @@
-export default function BarraFiltros() {
+import type { CategoryResponse } from '../types/categorias';
+
+interface Props {
+  categories: CategoryResponse[];
+  selectedCategory: number | null;
+  onCategoryChange: (categoryId: number | null) => void;
+}
+
+export default function BarraFiltros({ categories, selectedCategory, onCategoryChange }: Props) {
   return (
     <div class="barra-filtros">
-      <select class="select--oscuro">
+      <select class="select--oscuro" value={selectedCategory ?? ''} onChange={e => {
+        const val = (e.target as HTMLSelectElement).value;
+        onCategoryChange(val ? Number(val) : null);
+      }}>
         <option value="">Todas las categorías</option>
-        <option value="servicios">Servicios</option>
-        <option value="nomina">Nómina</option>
-        <option value="proveedores">Proveedores</option>
-        <option value="operativos">Operativos</option>
-        <option value="otros">Otros</option>
+        {categories.map(c => (
+          <option key={c.id} value={c.id}>{c.name}</option>
+        ))}
       </select>
-
-      <div class="toggle-tipo">
-        <button class="toggle-tipo__opcion toggle-tipo__opcion--activo">Todas</button>
-        <button class="toggle-tipo__opcion">Fijas</button>
-        <button class="toggle-tipo__opcion">Variables</button>
-      </div>
 
       <button class="boton-filtros">
         <svg class="boton-filtros__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">

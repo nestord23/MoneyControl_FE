@@ -1,9 +1,30 @@
+import { useState } from 'preact/hooks';
 import ModalLayout from './shared/ModalLayout';
 import AmountInput from './shared/AmountInput';
-import TerminalToggle from './shared/TerminalToggle';
 import ActionGroup from './shared/ActionGroup';
+import type { CreateIncomeRequest } from '../types/ingresos';
 
-export default function ModalIngreso() {
+interface Props {
+  onSubmit: (data: CreateIncomeRequest) => Promise<void>;
+}
+
+export default function ModalIngreso({ onSubmit }: Props) {
+  const [amount, setAmount] = useState(0);
+  const [description, setDescription] = useState('');
+  const [date, setDate] = useState('');
+
+  const handleSubmit = async () => {
+    if (!amount || !date) return;
+    await onSubmit({
+      amount,
+      date,
+      description: description || undefined,
+    });
+    setAmount(0);
+    setDescription('');
+    setDate('');
+  };
+
   return (
     <ModalLayout
       id="modal-ingreso"
@@ -12,31 +33,19 @@ export default function ModalIngreso() {
       variant="ingreso"
       openBtnId="btn-registrar-ingreso"
     >
-      <AmountInput variant="ingreso" label="Amount (GTQ)" placeholder="Q0.00" />
+      <AmountInput variant="ingreso" label="Amount (GTQ)" placeholder="Q0.00" onChange={setAmount} />
 
       <div class="modal-body__group">
-        <label class="modal-body__label">Source Entity</label>
-        <input class="modal-body__input" type="text" placeholder="ej. Cliente XYZ, Banco..." />
+        <label class="modal-body__label">Description</label>
+        <input class="modal-body__input" type="text" placeholder="ej. Cliente XYZ, Banco..." value={description} onChange={e => setDescription((e.target as HTMLInputElement).value)} />
       </div>
 
       <div class="modal-body__group">
-        <label class="modal-body__label">Ledger Category</label>
-        <select class="modal-body__select">
-          <option value="">Seleccionar categoría...</option>
-          <option value="servicios">Servicios</option>
-          <option value="nomina">Nómina</option>
-          <option value="inversiones">Inversiones</option>
-          <option value="marketing">Marketing</option>
-          <option value="ventas">Ventas</option>
-        </select>
+        <label class="modal-body__label">Date</label>
+        <input class="modal-body__input" type="date" value={date} onChange={e => setDate((e.target as HTMLInputElement).value)} />
       </div>
 
-      <div class="modal-body__group">
-        <label class="modal-body__label">Pulse Frequency</label>
-        <TerminalToggle opciones={["RECURRING", "ONE-TIME"]} variant="ingreso" />
-      </div>
-
-      <ActionGroup variant="ingreso" ctaText="COMMIT TO LEDGER" ctaIcono="arrow-down" />
+      <ActionGroup variant="ingreso" ctaText="COMMIT TO LEDGER" ctaIcono="arrow-down" onSubmit={handleSubmit} modalId="modal-ingreso" />
     </ModalLayout>
   );
 }

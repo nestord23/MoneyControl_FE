@@ -1,29 +1,31 @@
 import { useState, useEffect } from 'preact/hooks';
+import { useUIStore } from '../store/ui';
+import type { CategoryResponse, CreateCategoryRequest, UpdateCategoryRequest } from '../types/categorias';
 
-const COLORES = [
-  { hex: '#00d2ff', name: 'Cyber Blue' },
-  { hex: '#00ff88', name: 'Cyber Green' },
-  { hex: '#ff4466', name: 'Neon Red' },
-  { hex: '#ff44aa', name: 'Neon Pink' },
-  { hex: '#44ff88', name: 'Toxic Green' },
-  { hex: '#bd93f9', name: 'Purple' },
-  { hex: '#ffb800', name: 'Warning' },
-  { hex: '#ff8844', name: 'Orange' },
-];
+interface Props {
+  editingCategory?: CategoryResponse | null;
+  onCreate: (data: CreateCategoryRequest) => Promise<void>;
+  onUpdate: (id: number, data: UpdateCategoryRequest) => Promise<void>;
+}
 
-export default function EditorCategorias() {
-  const [visible, setVisible] = useState(false);
-  const [colorSel, setColorSel] = useState('#00d2ff');
+export default function EditorCategorias({ editingCategory, onCreate, onUpdate }: Props) {
+  const modalOpen = useUIStore(s => s.modalOpen);
+  const closeModal = useUIStore(s => s.closeModal);
+  const openModal = useUIStore(s => s.openModal);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+
+  const visible = modalOpen === 'categoria';
 
   useEffect(() => {
     const btnAbrir = document.getElementById('btn-nueva-categoria');
     const btnCerrar = document.getElementById('editor-cerrar');
     const overlay = document.getElementById('editor-overlay');
 
-    const abrir = () => setVisible(true);
-    const cerrar = () => setVisible(false);
+    const abrir = () => openModal('categoria');
+    const cerrar = () => closeModal();
     const clickFuera = (e: MouseEvent) => {
-      if (e.target === overlay) cerrar();
+      if (e.target === overlay) closeModal();
     };
 
     btnAbrir?.addEventListener('click', abrir);
@@ -35,13 +37,33 @@ export default function EditorCategorias() {
       btnCerrar?.removeEventListener('click', cerrar);
       overlay?.removeEventListener('click', clickFuera);
     };
-  }, []);
+  }, [openModal, closeModal]);
+
+  useEffect(() => {
+    if (editingCategory) {
+      setName(editingCategory.name);
+      setDescription(editingCategory.description || '');
+      openModal('categoria');
+    }
+  }, [editingCategory, openModal]);
+
+  const handleSave = async () => {
+    if (!name.trim()) return;
+    if (editingCategory) {
+      await onUpdate(editingCategory.id, { name: name.trim(), description: description.trim() || null });
+    } else {
+      await onCreate({ name: name.trim(), description: description.trim() || null });
+    }
+    setName('');
+    setDescription('');
+    closeModal();
+  };
 
   return (
     <div class={`editor-overlay${visible ? ' editor-overlay--visible' : ''}`} id="editor-overlay">
       <div class="editor-modal">
         <div class="editor-modal__encabezado">
-          <span class="editor-modal__titulo">New Category</span>
+          <span class="editor-modal__titulo">{editingCategory ? 'Edit Category' : 'New Category'}</span>
           <button class="editor-modal__cerrar" id="editor-cerrar">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="18" y1="6" x2="6" y2="18" />
@@ -52,39 +74,15 @@ export default function EditorCategorias() {
         <div class="editor-modal__cuerpo">
           <div class="editor-modal__grupo">
             <label class="editor-modal__etiqueta">Nombre</label>
-            <input class="editor-modal__input" type="text" placeholder="ej. Servicios, Nómina..." />
+            <input class="editor-modal__input" type="text" placeholder="ej. Servicios, Nómina..." value={name} onInput={e => setName((e.target as HTMLInputElement).value)} />
           </div>
           <div class="editor-modal__grupo">
-            <label class="editor-modal__etiqueta">Icono</label>
-            <select class="editor-modal__select">
-              <option value="zap">⚡ Servicios</option>
-              <option value="users">👥 Nómina</option>
-              <option value="truck">🚚 Proveedores</option>
-              <option value="tool">🔧 Operativos</option>
-              <option value="trending-up">📈 Inversiones</option>
-              <option value="megaphone">📢 Marketing</option>
-              <option value="dollar-sign">💰 Ventas</option>
-              <option value="shopping">🛒 Compras</option>
-            </select>
+            <label class="editor-modal__etiqueta">Descripción</label>
+            <input class="editor-modal__input" type="text" placeholder="Descripción opcional..." value={description} onInput={e => setDescription((e.target as HTMLInputElement).value)} />
           </div>
-          <div class="editor-modal__grupo">
-            <label class="editor-modal__etiqueta">Color</label>
-            <div class="selector-color">
-              {COLORES.map((c) => (
-                <button
-                  class={`selector-color__item${c.hex === colorSel ? ' selector-color__item--seleccionado' : ''}`}
-                  data-color={c.hex}
-                  title={c.name}
-                  onClick={() => setColorSel(c.hex)}
-                />
-              ))}
-            </div>
-          </div>
-          <div class="editor-modal__grupo">
-            <label class="editor-modal__etiqueta">Presupuesto</label>
-            <input class="editor-modal__input editor-modal__input--mono" type="text" placeholder="Q0.00" />
-          </div>
-          <button class="editor-modal__accion">SAVE</button>
+          <button class="editor-modal__accion" onClick={handleSave}>
+            {editingCategory ? 'UPDATE' : 'SAVE'}
+          </button>
         </div>
       </div>
     </div>

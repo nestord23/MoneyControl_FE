@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'preact/hooks';
+import { useEffect } from 'preact/hooks';
 import type { ComponentChildren } from 'preact';
+import { useUIStore } from '../../store/ui';
+import type { ModalType } from '../../store/ui';
 
 interface Props {
   id: string;
   titulo: string;
   idTecnico: string;
-  variant: string;
+  variant: ModalType;
   openBtnId: string;
   closeBtnId?: string;
   children: ComponentChildren;
@@ -14,7 +16,10 @@ interface Props {
 export default function ModalLayout({
   id, titulo, idTecnico, variant, openBtnId, closeBtnId, children
 }: Props) {
-  const [visible, setVisible] = useState(false);
+  const modalOpen = useUIStore(s => s.modalOpen);
+  const openModal = useUIStore(s => s.openModal);
+  const closeModal = useUIStore(s => s.closeModal);
+  const visible = modalOpen === variant;
   const closeId = closeBtnId || `${id}-cerrar`;
 
   useEffect(() => {
@@ -22,10 +27,10 @@ export default function ModalLayout({
     const btnCerrar = document.getElementById(closeId);
     const overlay = document.getElementById(id);
 
-    const abrir = () => setVisible(true);
-    const cerrar = () => setVisible(false);
+    const abrir = () => openModal(variant);
+    const cerrar = () => closeModal();
     const clickFuera = (e: MouseEvent) => {
-      if (e.target === overlay) cerrar();
+      if (e.target === overlay) closeModal();
     };
 
     btnAbrir?.addEventListener('click', abrir);
@@ -37,7 +42,7 @@ export default function ModalLayout({
       btnCerrar?.removeEventListener('click', cerrar);
       overlay?.removeEventListener('click', clickFuera);
     };
-  }, []);
+  }, [openBtnId, closeId, id, variant, openModal, closeModal]);
 
   return (
     <div class={`modal-overlay${visible ? ' modal-overlay--visible' : ''}`} id={id}>

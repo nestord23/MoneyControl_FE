@@ -1,31 +1,32 @@
 import { useState } from 'preact/hooks';
-import { accountingFormat, rawValue } from '../../lib/accounting';
+import { accountingFormat } from '../../lib/accounting';
 
 interface Props {
   variant: string;
   label?: string;
   placeholder?: string;
+  onChange?: (value: number) => void;
 }
 
-export default function AmountInput({ variant, label, placeholder }: Props) {
-  const [raw, setRaw] = useState('');
+export default function AmountInput({ variant, label, placeholder, onChange }: Props) {
   const [display, setDisplay] = useState('');
-
-  const handleFocus = () => {
-    setDisplay(raw);
-  };
 
   const handleBlur = () => {
     if (!display) return;
     const cleaned = display.replace(/[^0-9.-]/g, '');
-    setRaw(cleaned);
     setDisplay(accountingFormat(cleaned));
+    const num = parseFloat(cleaned);
+    if (!isNaN(num) && onChange) onChange(num);
   };
 
   const handleInput = (e: Event) => {
     const el = e.target as HTMLInputElement;
     setDisplay(el.value);
-    setRaw(el.value.replace(/[^0-9.-]/g, ''));
+  };
+
+  const handleFocus = () => {
+    const cleaned = display.replace(/[^0-9.-]/g, '');
+    setDisplay(cleaned);
   };
 
   return (

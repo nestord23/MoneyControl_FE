@@ -1,31 +1,32 @@
-import { useState, useRef } from 'preact/hooks';
+import { useState } from 'preact/hooks';
+import { useUIStore } from '../../store/ui';
 
 interface Props {
   variant: string;
   ctaText: string;
   cancelText?: string;
   ctaIcono?: string;
+  onSubmit?: () => Promise<void>;
 }
 
-export default function ActionGroup({ variant, ctaText, cancelText = "ABORT", ctaIcono }: Props) {
+export default function ActionGroup({ variant, ctaText, cancelText = "ABORT", ctaIcono, onSubmit }: Props) {
   const [processing, setProcessing] = useState(false);
-  const origText = useRef(ctaText);
+  const closeModal = useUIStore(s => s.closeModal);
 
-  const handleCta = () => {
+  const handleCta = async () => {
+    if (!onSubmit) return;
     setProcessing(true);
-
-    setTimeout(() => {
+    try {
+      await onSubmit();
+      closeModal();
+    } finally {
       setProcessing(false);
-      const overlay = document.getElementById('modal-ingreso')
-        || document.getElementById('modal-gasto')
-        || document.getElementById('modal-deuda');
-      if (overlay) overlay.classList.remove('modal-overlay--visible');
-    }, 1200);
+    }
   };
 
   return (
     <div class={`action-group action-group--${variant}`}>
-      <button class="action-group__secondary">{cancelText}</button>
+      <button class="action-group__secondary" onClick={closeModal}>{cancelText}</button>
       <button
         class={`action-group__primary${processing ? ' action-group__primary--processing' : ''}`}
         onClick={handleCta}

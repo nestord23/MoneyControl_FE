@@ -1,33 +1,22 @@
-import { useEffect } from 'preact/hooks';
 import FilaPrestamo from './FilaPrestamo';
-import type { PrestamoAPI } from './FilaPrestamo';
+import type { LoanResponse } from '../types/prestamos';
 
-const prestamos: PrestamoAPI[] = [
-  { loanName: 'Hipoteca — Scotia', totalAmount: 180000, remainingBalance: 142350, interestRate: 5.9, nextDueDate: '2026-07-05', status: 'ACTIVE' },
-  { loanName: 'Auto — Honda Civic 2024', totalAmount: 35000, remainingBalance: 21400, interestRate: 7.2, nextDueDate: '2026-06-28', status: 'ACTIVE' },
-  { loanName: 'Personal — Credomatic', totalAmount: 15000, remainingBalance: 3200, interestRate: 12.5, nextDueDate: '2026-06-15', status: 'OVERDUE' },
-  { loanName: 'Estudiantil — Caja', totalAmount: 25000, remainingBalance: 0, interestRate: 4.5, nextDueDate: '2026-01-10', status: 'PAID' },
-  { loanName: 'Equipo — Apple Finance', totalAmount: 8000, remainingBalance: 0, interestRate: 0, nextDueDate: '2026-03-20', status: 'PAID' },
-  { loanName: 'Negocio — BAC', totalAmount: 50000, remainingBalance: 38400, interestRate: 9.8, nextDueDate: '2026-07-12', status: 'ACTIVE' },
-];
+interface Props {
+  loans: LoanResponse[];
+  loading?: boolean;
+  onMarkAsPaid?: (id: number) => void;
+}
 
-export default function ListaPrestamos() {
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = prestamos.map((p, i) => {
-      const pct = p.status === 'PAID' ? 100 : (1 - p.remainingBalance / p.totalAmount) * 100;
-      return `
-        .tabla-amortizacion__cuerpo > .fila-prestamo:nth-child(${i + 1}) { animation-delay: ${0.08 * i}s; }
-        .tabla-amortizacion__cuerpo > .fila-prestamo:nth-child(${i + 1}) .fila-prestamo__barra-lleno { width: ${pct}%; }
-      `;
-    }).join('\n');
-    document.head.appendChild(style);
-    return () => style.remove();
-  }, []);
-
+export default function ListaPrestamos({ loans, loading, onMarkAsPaid }: Props) {
   return (
     <div class="tabla-amortizacion__cuerpo">
-      {prestamos.map((p, i) => <FilaPrestamo key={i} prestamo={p} />)}
+      {loading ? (
+        <p>Cargando...</p>
+      ) : loans.length === 0 ? (
+        <p>Sin préstamos registrados</p>
+      ) : (
+        loans.map((p, i) => <FilaPrestamo key={p.id ?? i} prestamo={p} onMarkAsPaid={onMarkAsPaid} />)
+      )}
     </div>
   );
 }

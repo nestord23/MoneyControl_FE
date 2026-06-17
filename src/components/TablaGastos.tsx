@@ -1,18 +1,12 @@
 import FilaGasto from './FilaGasto';
-import type { GastoAPI } from './FilaGasto';
+import type { ExpenseResponse } from '../types/gastos';
 
-const gastos: GastoAPI[] = [
-  { date: '2026-06-12', description: 'Electricidad — Oficina Central', categoryName: 'Servicios', type: 0, amount: 1230.00 },
-  { date: '2026-06-12', description: 'Pago nómina quincenal', categoryName: 'Nómina', type: 0, amount: 8400.00 },
-  { date: '2026-06-11', description: 'Suministros de oficina', categoryName: 'Operativos', type: 1, amount: 345.50 },
-  { date: '2026-06-11', description: 'Factura proveedor — Cloud Services', categoryName: 'Proveedores', type: 0, amount: 2800.00 },
-  { date: '2026-06-10', description: 'Mantenimiento equipo', categoryName: 'Operativos', type: 1, amount: 980.00 },
-  { date: '2026-06-10', description: 'Internet y telecomunicaciones', categoryName: 'Servicios', type: 0, amount: 560.00 },
-  { date: '2026-06-09', description: 'Material de marketing', categoryName: 'Operativos', type: 1, amount: 2100.00 },
-  { date: '2026-06-09', description: 'Seguro empresarial', categoryName: 'Servicios', type: 0, amount: 1500.00 },
-];
+interface Props {
+  expenses: ExpenseResponse[];
+  loading?: boolean;
+}
 
-export default function TablaGastos() {
+export default function TablaGastos({ expenses, loading }: Props) {
   return (
     <div class="tabla-datos">
       <div class="tabla-datos__cabecera">
@@ -23,7 +17,13 @@ export default function TablaGastos() {
         <span class="tabla-datos__cabecera-item">Monto</span>
       </div>
       <div class="tabla-datos__cuerpo">
-        {gastos.map((g, i) => <FilaGasto key={i} gasto={g} />)}
+        {loading ? (
+          <p class="tabla-datos__mensaje">Cargando...</p>
+        ) : expenses.length === 0 ? (
+          <p class="tabla-datos__mensaje">Sin gastos registrados</p>
+        ) : (
+          expenses.map((g, i) => <FilaGasto key={g.id} gasto={g} />)
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,18 @@
 import { useEffect, useRef } from 'preact/hooks';
 import Chart from 'chart.js/auto';
+import type { ChartDataset } from '../hooks/useDashboardChart';
 
-const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+interface Props {
+  labels: string[];
+  datasets: ChartDataset[];
+  loading?: boolean;
+}
 
-export default function GraficoPrincipal() {
+export default function GraficoPrincipal({ labels, datasets, loading }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (loading || !datasets.length) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -21,39 +27,26 @@ export default function GraficoPrincipal() {
     gradientGastos.addColorStop(0, 'rgba(255, 68, 102, 0.15)');
     gradientGastos.addColorStop(1, 'rgba(255, 68, 102, 0)');
 
+    const chartData = {
+      labels,
+      datasets: datasets.map((ds, i) => ({
+        label: ds.label,
+        data: ds.data,
+        borderColor: ds.borderColor,
+        backgroundColor: i === 0 ? gradientIngresos : gradientGastos,
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        pointHoverBackgroundColor: ds.borderColor,
+        pointHoverBorderColor: ds.borderColor,
+        fill: true,
+        tension: 0.4,
+      })),
+    };
+
     const chart = new Chart(ctx, {
       type: 'line',
-      data: {
-        labels: meses,
-        datasets: [
-          {
-            label: 'Ingresos',
-            data: [28500, 31200, 29800, 33400, 35200, 38100, 36500, 39200, 41800, 40500, 43200, 48250],
-            borderColor: '#00ff88',
-            backgroundColor: gradientIngresos,
-            borderWidth: 2,
-            pointRadius: 0,
-            pointHoverRadius: 4,
-            pointHoverBackgroundColor: '#00ff88',
-            pointHoverBorderColor: '#00ff88',
-            fill: true,
-            tension: 0.4,
-          },
-          {
-            label: 'Gastos',
-            data: [22100, 19800, 23400, 24500, 21200, 25600, 27800, 24100, 26800, 29100, 27500, 32180],
-            borderColor: '#ff4466',
-            backgroundColor: gradientGastos,
-            borderWidth: 2,
-            pointRadius: 0,
-            pointHoverRadius: 4,
-            pointHoverBackgroundColor: '#ff4466',
-            pointHoverBorderColor: '#ff4466',
-            fill: true,
-            tension: 0.4,
-          },
-        ],
-      },
+      data: chartData,
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -103,13 +96,17 @@ export default function GraficoPrincipal() {
     });
 
     return () => chart.destroy();
-  }, []);
+  }, [labels, datasets, loading]);
+
+  if (loading) {
+    return <section class="grafico-principal"><p>Cargando gráfico...</p></section>;
+  }
 
   return (
     <section class="grafico-principal">
       <div class="grafico-principal__encabezado">
         <h2 class="grafico-principal__titulo">Cash Flow Analysis</h2>
-        <span class="grafico-principal__periodo">2026</span>
+        <span class="grafico-principal__periodo">{new Date().getFullYear()}</span>
       </div>
       <div class="grafico-principal__lienzo">
         <canvas ref={canvasRef} id="grafico-cashflow"></canvas>

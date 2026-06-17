@@ -1,15 +1,25 @@
-export interface IngresoAPI {
+export interface IncomeResponse {
   id: number;
-  monto: number;
-  entidad: string;
-  categoria: string;
-  frecuencia: 'RECURRING' | 'ONE-TIME';
-  fecha: string;
+  amount: number;
+  date: string;
+  description: string | null;
 }
 
-export interface CreateIngresoDTO {
-  monto: number;
-  entidad: string;
-  categoria: string;
-  frecuencia: 'RECURRING' | 'ONE-TIME';
+export interface CreateIncomeRequest {
+  amount: number;
+  date: string;
+  description?: string | null;
+}
+
+export interface UpdateIncomeRequest {
+  amount: number;
+  date: string;
+  description?: string | null;
+}
+
+export interface IncomeSummaryResponse {
+  totalByDay: number;
+  totalByWeek: number;
+  totalByMonth: number;
+  totalByYear: number;
 }

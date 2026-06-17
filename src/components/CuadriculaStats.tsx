@@ -1,16 +1,34 @@
 import TarjetaStats from './TarjetaStats';
 
-const tarjetas = [
-  { titulo: 'Ingresos', valor: '+$48,250.00', variante: 'secondary' as const, icono: 'trending-up' as const },
-  { titulo: 'Gastos', valor: '-$32,180.00', variante: 'alert' as const, icono: 'trending-down' as const },
-  { titulo: 'Ratio', valor: '1.50', variante: 'primary' as const, icono: 'activity' as const },
-  { titulo: 'Prestamos Pendientes', valor: '$12,400.00', variante: 'alert' as const, icono: 'dollar-sign' as const },
-];
+export interface StatCard {
+  titulo: string;
+  valor: string;
+  variante: 'primary' | 'secondary' | 'alert';
+  icono: 'trending-up' | 'trending-down' | 'activity' | 'dollar-sign';
+}
 
-export default function CuadriculaStats() {
+interface Props {
+  stats: StatCard[];
+  loading?: boolean;
+}
+
+export default function CuadriculaStats({ stats, loading }: Props) {
+  if (loading) {
+    return (
+      <div class="cuadricula-stats">
+        {[1, 2, 3, 4].map(i => (
+          <article class="tarjeta tarjeta--destacado" key={i}>
+            <div class="tarjeta__encabezado">
+              <span class="tarjeta__etiqueta">CARGANDO...</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    );
+  }
   return (
     <div class="cuadricula-stats">
-      {tarjetas.map((t, i) => (
+      {stats.map((t, i) => (
         <TarjetaStats key={i} titulo={t.titulo} valor={t.valor} variante={t.variante} icono={t.icono} />
       ))}
     </div>

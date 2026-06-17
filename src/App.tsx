@@ -1,6 +1,7 @@
 import { Route, Switch } from 'wouter';
 import BarraLateral from './components/BarraLateral';
 import BarraSuperior from './components/BarraSuperior';
+import Toast from './components/Toast';
 import Dashboard from './pages/Dashboard';
 import Ingresos from './pages/Ingresos';
 import Gastos from './pages/Gastos';
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/categorias" component={Categorias} />
         </Switch>
       </main>
+      <Toast />
     </div>
   );
 }
